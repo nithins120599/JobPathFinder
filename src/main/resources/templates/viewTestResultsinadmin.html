@@ -1,0 +1,50 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		<title>AdminHome</title>
+	</head>
+	<body >
+	<div th:replace="adminmenu :: adminhomemenu"></div>
+		<br>
+		<center>
+			<div class="container-fluid mb-5" style="width:90%">
+				
+					<h2 style="color: rgb(225, 113, 0);">TestResults</h2>
+				  <div class="table-responsive">
+   				 <table class="table table-light table-striped"  style="border: 5px solid rgb(0, 64, 128);">
+					
+					<thead class="table table-dark table-striped"  style="border: 5px solid rgb(0, 64, 0);">
+						<tr style="border: 2px solid rgb(192, 192, 192);">
+							
+							
+							<th>ResultId</th>
+							<th>UserId</th>
+							<th>QuestionId</th>
+							<th>VacancyId</th>
+							<th>SelectedOption</th>
+							<th>Result</th>
+							<th>Score</th>
+							
+						</tr>
+					</thead>
+					<tbody class="table-info">
+						
+						<tr th:each="test1 : ${test}">
+						<td th:text="${test1.resultId}"></td>
+						<td th:text="${test1.jobSeekers.userId}"></td>
+						<td th:text="${test1.questions.questionId}"></td>
+						<td th:text="${test1.vacancy.vacancyId}"></td>
+						<td th:text="${test1.selectedOption}"></td>
+						<td th:text="${test1.result}"></td>
+						<td th:text="${test1.score}"></td>
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+			<div th:replace="footer :: footer"></div>
+
+		
+	</body>
+	</html>

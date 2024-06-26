@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Questions</title>
+    <head th:replace="headers :: includes"></head>
+    <!-- Bootstrap CSS -->
+   
+    <!-- Custom CSS -->
+    <style>
+        /* Optional custom styles */
+        .card {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+	 <div th:replace="companymenu :: companymenu"></div>
+    <div class="container">
+     <h2 class="mt-3">Edit Questions</h2>
+        <div class="card">
+            <div class="card-body" style="border: 4px solid rgb(0, 0, 128);">
+                <form th:action="@{/company/updateQuestions}" th:object="${questionn}" method="post">
+                    <div class="form-group">
+                        <label for="testId">Test Id:</label>
+                        <input type="text" class="form-control" name="testId" th:value="${questionn.test.testId}" th:field="*{test.testId}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="vacancyId">Vacancy Id:</label>
+                        <input type="text" class="form-control" name="vacancyId" th:value="${questionn.vacancy.vacancyId}" th:field="*{vacancy.vacancyId}" />
+                    </div>
+                     <div class="form-group">
+                        <label for="questionId">Question Id:</label>
+                        <input type="text" class="form-control" name="questionId" th:value="${questionId}" th:field="*{questionId}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="question">Question:</label>
+                        <textarea rows="4" class="form-control" th:field="*{question}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="option1">Option 1:</label>
+                        <input type="text" class="form-control" th:field="*{option1}">
+                    </div>
+                    <div class="form-group">
+                        <label for="option2">Option 2:</label>
+                        <input type="text" class="form-control" th:field="*{option2}">
+                    </div>
+                    <div class="form-group">
+                        <label for="option3">Option 3:</label>
+                        <input type="text" class="form-control" th:field="*{option3}">
+                    </div>
+                    <div class="form-group">
+                        <label for="option4">Option 4:</label>
+                        <input type="text" class="form-control" th:field="*{option4}">
+                    </div>
+                    <div class="form-group">
+                        <label for="correct">Correct Option:</label>
+                        <input type="text" class="form-control" th:field="*{correct}">
+                    </div>
+                    <div class="form-group">
+                        <label for="score">Score:</label>
+                        <input type="number" class="form-control" th:field="*{score}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

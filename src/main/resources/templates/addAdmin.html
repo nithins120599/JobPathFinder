@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes">
+	
+	<body>
+
+<form th:action="@{/addAdmin}" th:object="${admin}" method="post" >
+		<div class="card ">
+			<h3 class="text text-center text-success">Admin Registration form</h3>
+			<div class="card-body">
+
+				<div class="form-group">
+					<label for="adminName">Admin Name</label>
+					<input type="email" name="adminName" th:field="*{adminName}" class="form-control" required>
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" name="admPassword" th:field="*{adminPassword}" class="form-control"
+						 required>
+				</div>
+				
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary mt-3">Submit</button><br>
+				</div>
+				
+				</div>
+				</div>
+				
+				</form>
+				 
+		
+</body>
+</html>

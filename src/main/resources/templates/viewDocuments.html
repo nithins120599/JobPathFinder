@@ -1,0 +1,65 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body style="background-color: rgb(222, 255, 185)" class="bg">
+		<div th:replace="jobmenu :: jobmenu"></div>
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="card mb-5" style="width:90%">
+				<br>
+				
+				<br>
+			<h2 style="color: rgb(255, 0, 128);"><i class="fa-solid fa-file" style="color: rgb(255, 128, 128);"></i>User Documents</h2>
+				  <div class="table-responsive">
+   				 <table class="table table-striped">
+					
+					<thead>
+						<tr>
+							<th>Operations</th>
+							<th>Operations</th>
+							<th>Document Id</th>
+							<!--<th>CompanyId</th>-->
+							<th>Document Type</th>
+							<th>DocumentFile</th>
+							<th>View</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="doc : ${documentList}">
+						<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+						 <td><A th:href="@{/jobseeker/deleteDocuments/{docId}(docId=${doc.docId})}"  class="btn btn-danger">Delete</A></td>		
+						 <td><A th:href="@{/jobseeker/editDocuments/{docId}(docId=${doc.docId})}"  class="btn btn-success">Edit</A></td>	
+						<td th:text="${doc.docId}"></td>
+						
+						<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+						<td th:text="${doc.documentType}"></td>
+						<td th:text="${doc.documentFile}"></td>
+					<td>
+    <a th:href="@{http://localhost:8091/JobPathFinder/uploads/{documentFile}(documentFile=${doc.documentFile})}" class="btn btn-danger" download>
+        <i class="fas fa-cloud-download-alt"></i> <span class="spinner-grow spinner-grow-sm"></span>Download
+    </a>
+</td>
+
+						
+					
+						
+						
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+		<div th:replace="footer :: footer"></div>
+	</body>
+</html>

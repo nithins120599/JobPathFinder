@@ -1,0 +1,67 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body style="background-color: rgb(242, 244, 244)" class="bg">
+		<div th:replace="companymenu :: companymenu"></div>
+	
+		<center>
+			<div class="container-fluid mt-5" >
+			
+				
+			<h2 style="color: rgb(255, 0, 128);">Vacancy Details</h2>
+				  <div class="table-responsive" style="border-radius: 1.7rem;">
+   				 <table class="table table-active">
+					
+					<thead class="table table-dark">
+						<tr>
+							<!--<th>Operations</th>-->
+							<!--<th>Operations</th>-->
+							<th>Vacancy Id</th>
+							<!--<th>CompanyId</th>-->
+							<th>JobTitle</th>
+							<th>No of vacancies</th>
+							<th>Requirement</th>
+							<th>Description</th>
+							<th>Postdate</th>
+							<th>Opendate</th>
+							<th>Closedate</th>
+							<th>Operations</th>
+							<th>Operations</th>
+							
+						</tr>
+					</thead>
+					<tbody style="width: 90%; border: 2px solid rgb(0, 0, 64);">
+						<tr th:each="vacancy : ${vacanciesList}">
+						<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+							
+							
+						<td th:text="${vacancy.vacancyId}"></td>
+						
+						<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+						<td th:text="${vacancy.jobTitle}"></td>
+						<td th:text="${vacancy.noOfVacancies}"></td>
+						<td th:text="${vacancy.requirement}"></td>
+						<td th:text="${vacancy.description}"></td>
+						<td th:text="${vacancy.postDate}"></td>
+						<td th:text="${vacancy.openDate}"></td>
+						<td th:text="${vacancy.closeDate}"></td>
+					    <td><A th:href="@{/company/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A></td>
+					    <td><A th:href="@{/company/deletevacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-danger">Delete</A></td>
+						
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+		
+	</body>
+		<div th:replace="footer :: footer"></div>
+
+</html>

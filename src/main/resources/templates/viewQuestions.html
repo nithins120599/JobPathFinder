@@ -1,0 +1,70 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body style="background-color: rgb(255, 255, 255)" class="bg">
+		<div th:replace="companymenu :: companymenu"></div>
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="card  mb-4" style=" width:90%; border: 5px solid rgb(0, 0, 64);">
+				<br>
+			
+				
+				<h3 style="color: rgb(41, 39, 31);">List Of Questions</h3>
+				  <div class="table-responsive">
+   				 <table class="table table-light table-striped">
+					
+					<thead class="table table-active" style="border: 3px solid rgb(26, 102, 92);">
+						<tr>
+							<!--<th>Operations</th>-->
+							<!--<th>Operations</th>-->
+							<th>QuestionsId</th>
+							<th>TestId</th>
+							<th>vacancyId</th>
+							<th>Questions</th>
+							<th>Option1</th>
+							<th>Option2</th>
+							<th>Option3</th>
+							<th>Option4</th>
+							<th>Correct</th>
+							<th>Score</th>
+							<th>Operations</th>
+							<th>Operations</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="question : ${quesListt}">
+						<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+							
+							
+						<td th:text="${question.questionId}"></td>
+						
+						<td th:text="${question.test.testId}"></td>
+						<td th:text="${question.vacancy.vacancyId}"></td>
+						<td th:text="${question.question}"></td>
+						<td th:text="${question.option1}"></td>
+						<td th:text="${question.option2}"></td>
+						<td th:text="${question.option3}"></td>
+						<td th:text="${question.option4}"></td>
+						<td th:text="${question.correct}"></td>
+						<td th:text="${question.score}"></td>
+					    <td><A th:href="@{/company/editQuestions/{questionId}(questionId=${question.questionId})}"  class="btn btn-success">Edit</A></td>
+					  <td><A th:href="@{/company/deleteQuestions/{questionId}(questionId=${question.questionId})}"  class="btn btn-danger">Delete</A></td>
+
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+					<div th:replace="footer :: footer"></div>
+
+	</body>
+</html>

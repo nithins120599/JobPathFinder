@@ -1,0 +1,53 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		<title>AdminHome</title>
+	</head>
+	<body >
+	<div th:replace="adminmenu :: adminhomemenu"></div>
+		<br>
+		<center>
+			<div class="container-fluid mb-5" style="width:90%">
+				
+					<h2 style="color: rgb(225, 113, 0);">SelectedCandidates</h2>
+				  <div class="table-responsive">
+   				 <table class="table"  style="border: 5px solid rgb(0, 64, 128);">
+					
+					<thead  style="border: 5px solid rgb(0, 64, 0);">
+						<tr class="table-success"  style="border: 2px solid rgb(192, 192, 192); background-color: green;">
+							
+							
+							<th>SelectedCandidateId</th>
+							
+							<th>VacancyId</th>
+							<th>TestId</th>
+							<th>UserId</th>
+							
+							<th>Score</th>
+							<th>Status</th>
+							
+						</tr>
+					</thead>
+					<tbody >
+				
+						
+						<tr th:each="cand : ${candidates}">
+						<td th:text="${cand.selectedCandidateId}"></td>
+						<td th:text="${cand.vacancy.vacancyId}"></td>
+						<td th:text="${cand.test.testId}"></td>
+						<td th:text="${cand.jobSeeker.userId}"></td>
+						
+						<td th:text="${cand.score}"></td>
+					
+						<td th:text="${cand.status}"></td>
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+			<div th:replace="footer :: footer"></div>
+
+		
+	</body>
+	</html>

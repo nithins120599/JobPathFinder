@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Take Exam</title>
+    <head th:replace="headers :: includes"></head>
+    <style>
+        /* CSS for card styling */
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+	<div th:replace="jobmenu :: jobmenu"></div>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img th:src="@{http://localhost:8091/JobPathFinder/uploads/{logo}(logo=${quesList[0].vacancy.company.logo})}" alt="Company Logo"
+                    class="img-thumbnail img-rounded mt-5" width="250" height="120">
+            </div>
+            <div class="col-sm-6 mt-5">
+                <center>
+                    <h1>Exam</h1>
+                    <div>
+                        <p>Company Name: <span th:text="${quesList[0].vacancy.company.companyName}"></span></p>
+                        <p>Company Email: <span th:text="${quesList[0].vacancy.company.email}"></span></p>
+                    </div>
+                    <!-- Display test duration -->
+                    <div>
+                        <p>Test Duration: <span id="timer" style="color: red;" th:text="${quesList[0].test.testDuration}"></span></p>
+                    </div>
+                </center>
+            </div>
+        </div>
+
+        <hr>
+      <form id="testForm" th:action="@{/jobseeker/submitExam}" method="post">
+    <div th:each="question, questionStatus : ${quesList}">
+        <div class="card" style="margin-bottom:20px;">
+            <div class="card-body">
+                <p th:text="${questionStatus.index + 1}">Question Number</p>
+                <h5 class="card-title" th:text="${question.question}"></h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        th:name="'selectedOptions' + ${question.questionId}"
+                        th:id="'option1-' + ${question.questionId}" th:value="1">
+                    <label class="form-check-label" th:for="'option1-' + ${question.questionId}"
+                        th:text="${question.option1}"></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        th:name="'selectedOptions' + ${question.questionId}"
+                        th:id="'option2-' + ${question.questionId}" th:value="2">
+                    <label class="form-check-label" th:for="'option2-' + ${question.questionId}"
+                        th:text="${question.option2}"></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        th:name="'selectedOptions' + ${question.questionId}"
+                        th:id="'option3-' + ${question.questionId}" th:value="3">
+                    <label class="form-check-label" th:for="'option3-' + ${question.questionId}"
+                        th:text="${question.option3}"></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        th:name="'selectedOptions' + ${question.questionId}"
+                        th:id="'option4-' + ${question.questionId}" th:value="4">
+                    <label class="form-check-label" th:for="'option4-' + ${question.questionId}"
+                        th:text="${question.option4}"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="SubmitExam">
+</form>
+    </div>
+    <script>
+        // JavaScript code for countdown timer
+        function startTimer(duration, display) {
+            var timer = duration,hours, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function submitTest() {
+            document.getElementById("testForm").submit();
+        }
+
+        window.onload = function () {
+            var duration = parseInt(document.getElementById("timer").innerText.split(':')[0]) * 60; // Convert duration to seconds
+            var display = document.querySelector('#timer');
+            startTimer(duration, display);
+        };
+    </script>
+    
+    
+    
+	
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////-->
+
+	<!--
+        <div class="container">
+        <div th:replace="jobmenu :: jobmenu"></div>
+        <h2>Take Exam</h2>
+        <form th:action="@{submitExam}" th:object="${question}" method="post">
+            <div th:each="question, questionIndex : ${quesList}">
+                <div class="card">
+                    <h4 class="question" th:text="${questionIndex.count + '. ' + question.question}"></h4>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" th:name="'question_' + ${question.questionId}" th:value="${question.option1}" />
+                            <span th:text="${question.option1}"></span>
+                        </label><br/>
+                        <label class="option">
+                            <input type="radio" th:name="'question_' + ${question.questionId}" th:value="${question.option2}" />
+                            <span th:text="${question.option2}"></span>
+                        </label><br/>
+                        <label class="option">
+                            <input type="radio" th:name="'question_' + ${question.questionId}" th:value="${question.option3}" />
+                            <span th:text="${question.option3}"></span>
+                        </label><br/>
+                        <label class="option">
+                            <input type="radio" th:name="'question_' + ${question.questionId}" th:value="${question.option4}" />
+                            <span th:text="${question.option4}"></span>
+                        </label><br/>
+                    </div> 
+                
+                </div>
+            </div>
+            <input type="submit" value="Submit Exam" />
+        </form>
+    </div>
+   -->
+   
+    
+</body>
+
+
+</html>

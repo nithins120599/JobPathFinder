@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="headers :: includes">
+
+</head>
+
+<body style="background-color: rgb(245, 245, 245)" class="bg">
+
+	
+	<div class="container mt-5"  >
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card mb-5" style="border: 4px solid rgb(0, 0, 0);">
+				<div class="card-header text-center">
+				<h2 style="color: rgb(0, 64, 0);"> Edit Vacancies </h2>
+					</div>
+					<div class="card-body "  style="border: 3px solid rgb(83, 83, 83);">
+						<form th:action="@{/company/updateVacancy}" th:object="${vac}" method="post">
+							<div class="form-group">
+								<label for="companyId">Company Id</label>
+								<input type="text" class="form-control" name="companyId" th:value="${vac.company.companyId}" readonly/>
+
+							</div>
+							<div class="form-group">
+								<label for="vacancyId">Vacancy Id</label>
+								<input type="text" class="form-control" name="vacancyId" th:value="${vac.vacancyId}" readonly/>
+							</div>
+							<div class="form-group">
+								<label for="jobTitle">Job Title</label>
+								<input type="text" class="form-control" id="jobTitle" th:field="*{jobTitle}">
+							</div>
+							<div class="form-group">
+								<label for="description">Description</label>
+								<textarea class="form-control" id="description" rows="3"
+									th:field="*{description}"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="requirements">Requirements</label>
+								<textarea class="form-control" id="requirements" rows="3"
+									th:field="*{requirement}"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="noOfVacancies">Number of Vacancies</label>
+								<input type="number" class="form-control" id="noOfVacancies"
+									th:field="*{noOfVacancies}">
+							</div>
+							<div class="form-group">
+								<label for="openDate">Open Date</label>
+								<input type="date" class="form-control" id="openDate" th:field="*{openDate}">
+							</div>
+							<div class="form-group">
+								<label for="closeDate">Close Date</label>
+								<input type="date" class="form-control" id="closeDate" th:field="*{closeDate}">
+							</div>
+							<center>
+
+								<button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+							</center>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+</body>
+
+</html>

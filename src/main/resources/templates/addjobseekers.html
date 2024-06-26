@@ -1,0 +1,91 @@
+
+	
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes">
+</head>
+<body>
+
+<form th:action="@{/addingJobsekers}" th:object="${jobsekers}" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <h3 class="text text-center text-success">Jobseekers Registration Form</h3>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="registrationDate">Registration Date</label>
+                <input type="date" id="regDate" name="regDate" th:field="*{regDate}" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" th:field="*{gender}" class="form-control" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" th:field="*{email}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="text" id="mobile" name="mobile" th:field="*{mobile}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" th:field="*{address}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" th:field="*{password}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="profilePic">Profile Pic</label>
+                <input type="file" id="profilePic" name="profilePic1" class="form-control-file">
+            </div>
+
+            <div class="form-group">
+                <label for="qualifications">Qualifications</label>
+                <input type="text" id="qualifications" name="qualifications" th:field="*{qualifications}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experience</label>
+                <input type="text" id="experience" name="experience" th:field="*{experience}" class="form-control">
+            </div>
+
+            <center>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button><br><br>
+                <a th:href="@{/company/companylogin}" class="btn btn-warning mt-4">Back To Login</a>
+            </center>
+
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
+
+

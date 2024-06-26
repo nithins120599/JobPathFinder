@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes">
+	
+	<body>
+
+<form  th:action="@{/addingCompany}" th:object="${company}" method="post" enctype="multipart/form-data">
+    <div class="card">
+		<h3 class="text text-center text-success">Company Registration form</h3>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text"  name="companyName" th:field="*{companyName}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"  name="email" th:field="*{email}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="text"  name="mobile" th:field="*{mobile}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text"  name="location" th:field="*{location}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text"  name="city" th:field="*{city}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text"  name="state" th:field="*{state}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="companyLevel">Company Level</label>
+                <input type="text"  name="companyLevel" th:field="*{companyLevel}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" name="url" th:field="*{url}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="logo">Logo</label>
+                <input type="file"  name="logo1"  class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"  name="password" th:field="*{password}" class="form-control" required>
+            </div>
+<center>
+	
+            <button type="submit" class="btn btn-primary mt-3">Submit</button><br>
+            <br>
+            <a th:href="@{/userlogin}" class="btn btn-warning mt-4">Back To Login</a>
+</center>
+        </div>
+    </div>
+</form>
+		
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		<title>AdminHome</title>
+	</head>
+	<body >
+	<div th:replace="adminmenu :: adminhomemenu"></div>
+				
+		<center>
+			<div class="container-fluid" style="width:90%">
+				
+			<h2 style="color: rgb(128, 0, 64);">Vacancy Details</h2>
+				  <div class="table-responsive">
+   				 <table class="table table-primary"  style="border: 5px solid rgb(64, 0, 64);">
+					
+					<thead class="table table-dark table-striped">
+						<tr>
+							<!--<th>Operations</th>-->
+							<!--<th>Operations</th>-->
+							<th>Vacancy Id</th>
+							<!--<th>CompanyId</th>-->
+							<th>JobTitle</th>
+							<th>No of vacancies</th>
+							<th>Requirement</th>
+							<th>Postdate</th>
+							<th>Opendate</th>
+							<th>Closedate</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vacancy : ${vacanciesList}">
+						<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+							
+							
+						<td th:text="${vacancy.vacancyId}"></td>
+						
+						<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+						<td th:text="${vacancy.jobTitle}"></td>
+						<td th:text="${vacancy.noOfVacancies}"></td>
+						<td th:text="${vacancy.requirement}"></td>
+						<td th:text="${vacancy.postDate}"></td>
+						<td th:text="${vacancy.openDate}"></td>
+						<td th:text="${vacancy.closeDate}"></td>
+					
+						
+						
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+		
+			<div th:replace="footer :: footer"></div>
+	</body>
+	</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="headers :: includes">
+<body>
+	<div th:replace="companymenu :: companymenu"></div>
+
+	<div class="container-fluid">
+		<h1 class="text-center mt-3 mb-3">Job Applicants</h1>
+		<div class="table-responsive" style="border-radius: 1.5rem;">
+			<table class="table table-hover" >
+				<thead class="table table-info">
+					<tr class="text-center">
+						<th scope="col">Apply ID</th>
+						<th scope="col">Applicant Name</th>
+						<th scope="col">Vacancy Title</th>
+						<th scope="col">Apply Date</th>
+						<th scope="col">Status</th>
+						<th scope="col">Final Score</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="jobapplies: ${jobAppliersList}" class="text-center">
+						<td th:text="${jobapplies.applyId}"></td>
+						<td th:text="${jobapplies.jobseeker.firstName + ' ' + jobapplies.jobseeker.lastName}"></td>
+						<td th:text="${jobapplies.vacancy.jobTitle}"></td>
+						<td th:text="${jobapplies.applyDate}"></td>
+						<td th:text="${jobapplies.status}"></td>
+						<td th:text="${jobapplies.finalScore}"></td>
+					
+	
+
+					<td th:if="${jobapplies.status != 'qualified'}">
+    <button type="button" class="btn btn-danger"  disabled>
+       Disqualified
+    </button>
+</td>
+<td th:if="${jobapplies.status == 'qualified'}">
+    <button type="button" class="btn btn-success" data-toggle="modal"
+        th:data-target="'#jobSeekerDetailsModal' + ${jobapplies.applyId}">
+        Send Mail
+    </button>
+</td>		
+								
+	
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<div th:each="jobapplies : ${jobAppliersList}" th:id="'jobSeekerDetailsModal' + ${jobapplies.applyId}" class="modal fade"
+		tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content text text-primary">
+				<form th:object="${jobapply}" th:action="@{/company/selectedCandRes}"  method="post">
+					
+					
+					 <!-- Hidden input fields with values from JobApply entity -->
+<input type="hidden" name="applyId" th:value="${jobapplies.applyId}" />
+<input type="hidden" name="userId"   th:value="${jobapplies.jobseeker.userId}" />
+<input type="hidden" name="vacancyId" th:value="${jobapplies.vacancy.vacancyId}" />
+<input type="hidden" name="applyDate" th:value="${jobapplies.applyDate}" />
+<input type="hidden" name="status" th:value="${jobapplies.status}" />
+<input type="hidden" name="finalscore" th:value="${jobapplies.finalScore}" />
+
+					<!-- Define form action and bind to 'jobapply' object -->
+					<center>
+
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Job Seeker Details</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img th:src="@{http://localhost:8091/JobPathFinder/uploads/{profilePic}(profilePic=${jobapplies.jobseeker.profilePic})}"
+								alt="profilePic" class="img-thumbnail img-rounded mt-5" width="250" height="120">
+							<p style="margin-top:2rem;">Applicant Name: <span
+									th:text="${jobapplies.jobseeker.firstName + ' ' + jobapplies.jobseeker.lastName}"></span></p>
+							<p>Date of Birth: <span th:text="${jobapplies.jobseeker.dateOfBirth}"></span></p>
+							<p>Gender: <span th:text="${jobapplies.jobseeker.gender}"></span></p>
+							<p>Email: <span th:text="${jobapplies.jobseeker.email}"></span></p>
+							<p>Mobile: <span th:text="${jobapplies.jobseeker.mobile}"></span></p>
+							<p>Address: <span th:text="${jobapplies.jobseeker.address}"></span></p>
+							<p>Qualifications: <span th:text="${jobapplies.jobseeker.qualifications}"></span></p>
+							<p>Experience: <span th:text="${jobapplies.jobseeker.experience}"></span></p>
+					
+							<p>TotalScore: <span th:text="${jobapplies.finalScore}"></span></p>
+							<p>Status: <span th:text="${jobapplies.status}"></span></p>
+						</div>
+					<!-- Add more details as needed -->
+							<div th:each="doc : ${documentsList}">
+								<!-- Other document details -->
+								<p>Documents:</p>
+								<a th:href="@{http://localhost:8091/JobPathFinder/uploads/{documentFile}(documentFile=${doc.documentFile})}"
+									class="btn btn-success" download>
+									<i class="bi bi-file-earmark-arrow-down"></i> Download
+								</a>
+							</div>
+<br>
+							
+				
+						<!-- Modal footer -->
+				<button class="btn btn-danger" style="border-radius:20px;" 
+            th:if="${session['selected_' + jobapplies.jobseeker.userId]}" disabled>
+       <i class="bi bi-check2-circle"></i>  Hired
+    </button>
+    <button type="submit"
+       th:unless="${session['selected_' + jobapplies.jobseeker.userId]}"
+       class="btn btn-success" style="border-radius:20px;">
+        Select
+    </button>				
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</center>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+
+</body>
+<div th:replace="footer :: footer"></div>
+</html>

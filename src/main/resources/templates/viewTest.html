@@ -1,0 +1,58 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body style="background-color: rgb(255, 255, 255)" class="bg">
+		<div th:replace="companymenu :: companymenu"></div>
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="card mb-5">
+				
+				<h2 style="color: rgb(255, 0, 255);">Test Details</h2>
+				  <div class="table-responsive">
+   				 <table class="table table-success table-striped" style="border: 4px solid rgb(128, 0, 0);">
+					
+					<thead class="table table-info table-striped" sstyle="border: 4px solid rgb(0, 0, 128);">
+						<tr>
+							<th>Operations</th>
+							<th>Operations</th>
+							<th>Test Id</th>
+							<!--<th>CompanyId</th>-->
+							<th>Test date</th>
+							<th>Test Duration</th>
+							<th>Vacancy ID</th>
+							<th>AddQuestions</th>
+							
+							
+							
+						</tr>
+					</thead>
+					<tbody style="border: 5px solid rgb(0, 0, 128);">
+						<tr th:each="test : ${testListt}">
+						
+					 <td><A th:href="@{/company/deleteTest/{testId}(testId=${test.testId})}"  class="btn btn-danger">Delete</A></td>		
+				 <td><A th:href="@{/company/editTest/{testId}(testId=${test.testId})}"  class="btn btn-success">Edit</A></td>
+						<td th:text="${test.testId}"></td>
+						
+						<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+						<td th:text="${test.testDate}"></td>
+						<td th:text="${test.testDuration}"></td>
+						<td th:text="${test.vacancy.vacancyId}"></td>
+						<td>
+                                <!-- Link to Add Question Template -->
+                                <a th:href="@{/company/addQuestions(testId=${test.testId}, vacancyId=${test.vacancy.vacancyId})}" class="btn btn-danger" > <span class="spinner-grow spinner-grow-sm"></span>Add Question</a>
+                            </td>
+					 
+
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+			<div th:replace="footer :: footer"></div>
+
+	</body>
+</html>

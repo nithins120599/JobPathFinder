@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add Documents</title>
+
+	<head th:replace="headers :: includes"></head>
+
+</head>
+
+<body>
+	<div th:replace="jobmenu :: jobmenu"></div>
+	<div class="container">
+		<!--<div th:replace="jobmenu :: jobmenu"></div> -->
+		<h2 class="mt-3"><i class="fa-solid fa-file" style="color: #347af4;"></i>Edit Documents</h2>
+		<div class="card">
+			<div class="card-body">
+				<form th:action="@{/jobseeker/updateDocument}" th:object="${docum}" method="post" enctype="multipart/form-data">
+
+
+					<div class="form-group">
+						<label for="userId">User Id:</label>
+						<input type="text" class="form-control" name="userId"  th:field="*{jobSeekers.userId}" th:value="${docum.jobSeekers.userId}" />
+					</div>
+					<input type="text" class="form-control" name="docId"  th:field="*{docId}" th:value="${docId}" />
+					<div class="form-group">
+						<label for="documentType">Document Type:</label>
+						<select class="form-control" name="documentType" th:field="*{documentType}">
+							<option value="SSC">SSC</option>
+							<option value="Inter">Inter</option>
+							<option value="Graduated">Graduated</option>
+							<option value="Experienced">Experienced</option>
+						</select>
+					</div>
+
+
+
+					<div class="form-group ">
+						<label for="documentFile">Document File:</label>
+						
+							  <input type="file" name="documentFile1"  class="form-control">
+							
+					</div>
+
+
+
+
+
+
+					<div class="form-group mt-5">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

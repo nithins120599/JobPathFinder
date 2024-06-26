@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="headers :: includes">
+	<title>Job Seeker Home</title>
+
+</head>
+
+<body>
+	<div th:replace="jobmenu :: jobmenu"></div>
+
+ <section style="background-color: #eee;">
+        <div class="container py-3">
+          <h2 style="text-align: center;color: rgb(136, 0, 0);">
+   <i class="fas fa-user"></i> JobApplicant's Profile
+		</h2>
+      
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+					<img th:src="@{http://localhost:8091/JobPathFinder/uploads/{profilePic}(profilePic=${jobApplicants.profilePic})}"  alt="Avatar" 
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  
+                   <h5 th:text="${jobApplicants.firstName + ' ' + jobApplicants.lastName}"></h5>
+                   
+
+                   <!--
+                  <p class="text-muted mb-1">Full Stack Developer</p>
+                  <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary">Follow</button>
+                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                  </div>
+                  -->
+                   <div class="d-flex justify-content-center">
+                     <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                     <a href="#!"><i class="fab fa-github fa-lg me-3" style="color: rgb(0, 0, 0);"></i></a>
+ 
+                   <a href="#!"><i class="fab fa-instagram fa-lg" style="color: red;"></i></a>
+                  </div>
+                  <div class="row">
+					  <div class="col-sm-3">
+						
+					  </div>
+					  <div class="col-sm-5">
+						<a th:href="@{/jobseeker/editJobProfileDetails}"><i class="far fa-edit mb-5" style="color: #000842;"></i></a>  
+					  </div>
+					  <div class="col-sm-4">
+						
+					  </div>
+				  </div>
+                   
+
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+		
+                      <p class="mb-0" style="font-weight: bold;">FirstName:</p>
+                    </div>
+                    <div class="col-sm-3">
+						 <p class="text-muted" th:text="${jobApplicants.firstName}"></p>
+              <!--  <p class="text-muted" th:text="${jobApplicants.firstName + ' ' + jobApplicants.lastName}"></p> -->
+                    </div>
+                    <div class="col-sm-3">
+		
+                      <p class="mb-0" style="font-weight: bold;">LastName:</p>
+                    </div>
+                    <div class="col-sm-3">
+						 <p class="text-muted" th:text="${jobApplicants.lastName}"></p>
+              <!--  <p class="text-muted" th:text="${jobApplicants.firstName + ' ' + jobApplicants.lastName}"></p> -->
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Gender:</p>
+                    </div>
+                    <div class="col-sm-3">
+						 <p class="text-muted" th:text="${jobApplicants.gender}"></p>
+                     
+                    </div>
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Date-Of-Birth:</p>
+                    </div>
+                    <div class="col-sm-3">
+						 <p class="text-muted" th:text="${jobApplicants.dateOfBirth}"></p>
+                     
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Email:</p>
+                    </div>
+                    <div class="col-sm-3">
+						 <p class="text-muted" th:text="${jobApplicants.email}"></p>
+                     
+                    </div>
+                    <div class="col-sm-3" >
+                      <p class="mb-0" style="font-weight: bold;">Mobile:</p>
+                    </div>
+                    <div class="col-sm-3">
+                       <p class="text-muted" th:text="${jobApplicants.mobile}"></p>
+                    </div>
+                  </div>
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Qualifications:</p>
+                    </div>
+                    <div class="col-sm-3" >
+                      <p class="text-muted" th:text="${jobApplicants.qualifications}"></p>
+                    </div>
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Experience:</p>
+                    </div>
+                    <div class="col-sm-3">
+                       <p class="text-muted" th:text="${jobApplicants.experience}"></p>
+                    </div>
+                  </div>
+                  <hr>
+             
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0" style="font-weight: bold;">Address:</p>
+                    </div>
+                    <div class="col-sm-9">
+                       <p class="text-muted" th:text="${jobApplicants.address}"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+      
+      </section>
+
+<div th:replace="footer :: footer"></div>
+</body>
+
+</html>

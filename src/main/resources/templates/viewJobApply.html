@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes">
+    <title>Job Seeker Home</title>
+    <style>
+        /* Custom CSS can be added here */
+       
+        .button-container button {
+            flex-grow: 1;
+            margin-right: 5px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="jobmenu :: jobmenu"></div>
+<marquee behavior="scroll" direction="left" scrollamount="5" style="color: blue;">
+ "Unlock your potential! Start your exam now."
+</marquee>
+
+
+    <div class="container mt-4 mb-4" th:each="jobapp : ${jobAppliersList}">
+        <div class="row mt-3 border border-dark rounded p-3">
+            <div class="row">
+              <div class="col-sm-4">
+             
+                  <img th:src="@{http://localhost:8091/JobPathFinder/uploads/{logo}(logo=${jobapp.vacancy.company.logo})}"  style="width: 200px; height: 180px;" alt="Company Logo"/>
+                  <!--
+                  <p>CompanyName:<span class="fw-bold" th:text="${jobapp.vacancy.company.companyName}"></span></p> 
+                  -->
+                  <p><span class="fw-bold" th:text="${jobapp.vacancy.company.Url}"></span></p>
+
+              </div>
+              <div class="col-sm-4">
+           <p>JobTitle:<span class="fw-bold" th:text="${jobapp.vacancy.jobTitle}"></span></p>
+
+			 <p>Company Name:<span class="fw-bold" th:text="${jobapp.vacancy.company.companyName}"></span></p>		
+					<p>noOfVacancies: <span class="fw-bold" th:text="${jobapp.vacancy.noOfVacancies}"></span></p>
+					<p>Vacancy ID: <span class="fw-bold" th:text="${jobapp.vacancy.vacancyId}"></span></p>
+                     <p>PostDate:<span class="fw-bold" th:text="${jobapp.vacancy.postDate}"></span></p>
+              </div>
+             <div class="col-sm-4">
+				  
+				  <p>Requirement:<span class="fw-bold" th:text="${jobapp.vacancy.requirement}"></span></p>
+				    <p>Location:<span class="fw-bold" th:text="${jobapp.vacancy.company.location}"></span></p>
+				    <p>OpenDate:<span class="fw-bold" th:text="${jobapp.vacancy.openDate}"></span></p>
+                  <p>CloseDate: <span class="fw-bold" th:text="${jobapp.vacancy.closeDate}"></span></p>
+               <p>Status: <span class="fw-bold" th:text="${jobapp.status}"></span></p>
+              </div>
+
+
+              <div class="row">
+      <div class="col-sm-8"></div>
+                <div class="col-sm-4">
+            <!-- <a th:href="@{'/jobseeker/applyJob?vacancyId=' + ${vacancy.vacancyId}}" class="btn btn-danger" style="border-radius: 50px;">
+				ApplyJob</a>
+				-->
+
+
+<a th:if="${jobapp.status == 'OnProgress'}"
+	  th:href="@{/jobseeker/takeExam/{vacancyId}(vacancyId=${jobapp.vacancy.vacancyId})}" 
+	class="btn btn-danger" style="border-radius: 50px;">Take Exam</a> 
+	<button th:if="${jobapp.status != 'OnProgress'}" class="btn btn-success"
+                        style="border-radius:20px;" disabled>Take Exam</button>
+	
+	
+               
+                </div>
+              </div>
+              
+              
+              
+             
+            </div>
+
+           
+
+            
+
+        </div>
+    </div>
+   
+<div th:replace="footer :: footer"></div>
+
+</body>
+</html>

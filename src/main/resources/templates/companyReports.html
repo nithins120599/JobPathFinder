@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="headers :: includes">
+
+</head>
+
+<body>
+	<div th:replace="companymenu :: companymenu"></div>
+
+	<body style="background-color: rgb(242, 244, 244)" class="bg">
+		<!--<div th:replace="companymenu :: companymenu"></div> -->
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="container mb-4 " style="width:90%">
+				<br>
+
+				<br>
+				<h2 style="color: rgb(0, 94, 47);">Selected Candidates Results</h2>
+				<div class="table-responsive">
+					<table class="table" style="border: 3px solid rgb(122, 244, 0);">
+
+						<thead  class="table table-primary" >
+							<tr style="border: 3px solid rgb(128, 255, 128);">
+								<!--<th>Operations</th>-->
+								<!--<th>Operations</th>-->
+								<th>SelectedCandidatesId</th>
+								<th>Vacancy Id</th>
+								<th>User Id</th>
+								<th>Test Id</th>
+								<th>Status</th>
+								<th>Final Score</th>
+						
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="candids: ${selCandList}">
+								<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+
+
+								<td th:text="${candids.selectedCandidateId}"></td>
+
+								<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+								
+								<td th:text="${candids.vacancy.vacancyId}"></td>
+								<td th:text="${candids.test.testId}"></td>
+								<td th:text="${candids.jobSeeker.userId}"></td>
+								<td th:text="${candids.status}"></td>
+								<td th:text="${candids.score}"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+
+
+					
+
+				</div>
+			</div>
+		</center>
+
+<div th:replace="footer :: footer"></div>
+</body>
+
+</html>

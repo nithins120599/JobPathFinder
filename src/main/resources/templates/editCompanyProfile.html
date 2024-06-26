@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes"></head>
+<body>
+    <div th:replace="companymenu :: companymenu"></div>
+    
+    <form th:action="@{/company/editPicture}" th:object="${company}" method="post" enctype="multipart/form-data">
+		<center><h3>Edit Picture</h3></center>
+		<div class="container mt-5" style="border: 4px solid rgb(128, 0, 0);">
+		<div class="row mt-5">
+		<div class="col-sm-6">
+        <input type="file" name="logo1" accept="image/*">
+        
+        
+        </div>
+        <div class="col-sm-6"></div>
+        </div>
+        	<div class="row mt-5">
+				
+        <div class="form-group">
+	
+			<button type="submit" class="btn btn-primary mt-4 mb-3">Upload</button>
+		</div>
+        </div>
+        </div>
+    </form>
+</body>
+</html>

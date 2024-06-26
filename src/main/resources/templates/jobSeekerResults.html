@@ -1,0 +1,51 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body  class="bg">
+		<div th:replace="jobmenu :: jobmenu"></div>
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="container-fluid mb-5 mt-2" style="width:90%">
+				<br>
+				
+				<br>
+			<h2 style="color: rgb(0, 64, 0);">JobSeeker Results</h2>
+				  <div class="table-responsive">
+   				 <table class="table table-striped" style="border: 3px solid rgb(64, 0, 64);">
+					
+					<thead class="table table-dark">
+						<tr>
+							
+							<th>applyId</th>
+							
+							<th>applyDate</th>
+							<th>userId</th>
+							<th>vacancyId</th>
+							<th>status</th>
+							<th>finalScore</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="jobb : ${jobAppList}">
+						
+						<td th:text="${jobb.applyId}"></td>
+						
+						<td th:text="${jobb.applyDate}"></td> 
+						<td th:text="${jobb.jobseeker.userId}"></td>
+						<td th:text="${jobb.vacancy.vacancyId}"></td>
+							<td th:text="${jobb.status}"></td>
+  						 	<td th:text="${jobb.finalScore}"></td>
+    
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+		<div th:replace="footer :: footer"></div>
+	</body>
+</html>

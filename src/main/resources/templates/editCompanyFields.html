@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="headers :: includes">
+	
+	<body>
+		<div th:replace="companymenu :: companymenu"></div>
+	
+
+
+	<form th:action="@{/company/updatePic}" method="post" enctype="multipart/form-data" th:object="${company}">
+  
+						<div class="form-group">
+							<input type="hidden" name="companyId" th:field="*{companyId}" class="form-control"
+								readonly />
+
+							<label for="logo">Logo</label>
+							<input type="file" name="logo1" class="form-control" required>
+						</div>
+
+						<div class="form-group">
+							<label for="companyName">Company Name</label>
+							<input type="text" name="companyName" th:field="*{companyName}" class="form-control"
+								required>
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" name="email" th:field="*{email}" class="form-control" readonly>
+						</div>
+
+						<div class="form-group">
+							<label for="mobile">Mobile</label>
+							<input type="text" name="mobile" th:field="*{mobile}" class="form-control" required>
+						</div>
+
+						<div class="form-group">
+							<label for="location">Location</label>
+							<input type="text" name="location" th:field="*{location}" class="form-control">
+						</div>
+
+
+						<input type="hidden" name="regDate" th:field="*{regDate}" class="form-control">
+
+
+						<div class="form-group">
+							<label for="city">City</label>
+							<input type="text" name="city" th:field="*{city}" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="state">State</label>
+							<input type="text" name="state" th:field="*{state}" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="companyLevel">Company Level</label>
+							<input type="text" name="companyLevel" th:field="*{companyLevel}" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="url">URL</label>
+							<input type="text" name="url" th:field="*{url}" class="form-control">
+						</div>
+
+
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="text" name="password" th:field="*{password}" class="form-control" required>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+				</form>
+</body>
+</html>

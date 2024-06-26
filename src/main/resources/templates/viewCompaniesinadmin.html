@@ -1,0 +1,71 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head th:replace="headers :: includes">
+		
+	</head>
+	<body style="background-color: rgb(242, 244, 244)" class="bg">
+			<div th:replace="adminmenu :: adminhomemenu"></div>
+
+		<br>
+		<br>
+		<br>
+		<center>
+			<div class="container mb-4" style="width: 90%; border: 5px solid rgb(24, 146, 139);">
+				
+			<h2 style="color: rgb(125, 0, 0);">Company Details</h2>
+				  <div class="table-responsive" >
+   				 <table class="table table-primary table-borderd">
+					
+					<thead class="table table-warning table-striped"  style="border: 2px solid rgb(64, 0, 0);">
+						<tr>
+							<!--<th>Operations</th>-->
+							<!--<th>Operations</th>-->
+							
+							<th>CompanyId</th>
+							<th>CompanyName</th>
+							<th>Email</th>
+							<th>Mobile</th>
+							<th>Location</th>
+							<th>City</th>
+							<th>State</th>
+							<th>CompanyLevel</th>
+							<th>Url</th>
+							<th>Logo</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody  style="border: 2px solid rgb(0, 0, 64);">
+						<tr th:each="comp : ${companyList}">
+						<!--	<th>
+								<A th:href="@{/editVacancy/{vacancyId}(vacancyId=${vacancy.vacancyId})}"  class="btn btn-success">Edit</A>
+							</th> 
+							
+							-->
+							
+							
+						<td th:text="${comp.companyId}"></td>
+						
+						<!--<td th:text="${vacancy.company.companyId)}"></td> -->
+						<td th:text="${comp.companyName}"></td>
+						<td th:text="${comp.email}"></td>
+						<td th:text="${comp.mobile}"></td>
+						<td th:text="${comp.location}"></td>
+						<td th:text="${comp.city}"></td>
+						<td th:text="${comp.state}"></td>
+						<td th:text="${comp.companyLevel}"></td>
+						<td th:text="${comp.url}"></td>
+						
+						<td ><img th:src="@{http://localhost:8091/JobPathFinder/uploads/{logo}(logo=${comp.logo})}"  alt="Avatar" class="img-fluid my-5" style="width: 70px; height: 80px;"></td>
+					
+						
+						</tr>
+					</tbody>
+				</table>
+				 </div>
+			</div>
+		</center>
+		
+	</body>
+		<div th:replace="footer :: footer"></div>
+
+</html>
